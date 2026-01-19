@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สำหรับคนพิเศษ ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:linear-gradient(180deg,#ffb6c1,#ffd1dc);
+    color:white;
+    text-align:center;
+}
+
+/* หน้าใส่รหัส */
+#lock{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+input,button{
+    width:100%;
+    max-width:260px;
+    padding:14px;
+    border-radius:25px;
+    border:none;
+    font-size:18px;
+    margin-top:12px;
+}
+
+button{
+    background:#ff4d6d;
+    color:white;
+}
+
+/* หน้าเว็บ */
+#content{
+    display:none;
+    padding:20px 15px 80px;
+}
+
+/* กล่องข้อความ */
+#box{
+    background:rgba(255,255,255,0.25);
+    border-radius:20px;
+    padding:20px;
+    margin-top:20px;
+    min-height:100px;
+    font-size:20px;
+    line-height:1.6;
+}
+
+/* รูปแฟน */
+.gallery{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    margin-top:25px;
+}
+
+.gallery img{
+    width:140px;
+    border-radius:18px;
+    flex-shrink:0;
+}
+
+/* หัวใจ */
+.heart{
+    position:fixed;
+    font-size:20px;
+    animation:float 2s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes float{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-160px);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- หน้าใส่รหัส -->
+<div id="lock">
+    <h1>ถึง <span id="fanLock"></span> 💖</h1>
+    <input type="password" id="password" placeholder="วันครอบรอบ">
+    <button onclick="enter()">เข้าเว็บ ❤️</button>
+    <p id="error"></p>
+</div>
+
+<!-- หน้าเว็บจริง -->
+<div id="content">
+
+<audio id="music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<h1>สุขสันต์วันครบรอบนะ <span id="fanName"></span> 💕</h1>
+
+<button onclick="startTyping()">กดดูเซอร์ไพรส์ 💌</button>
+
+<div id="box"></div>
+
+<div class="gallery">
+    <img src="fan1.jpg">
+    <img src="fan2.jpg">
+    <img src="fan3.jpg">
+    <img src="fan4.jpg">
+</div>
+
+</div>
+
+<script>
+/* 🔧 ตั้งค่า */
+const FAN_NAME = "นีม";
+const PASSWORD = "123456";
+
+const message =
+"สวัสดีคนเก่ง ❤️\n"+
+"วันนี้เป็นวันพิเศษของเรา\n"+
+"ขอบคุณที่อยู่ข้างกันเสมอ\n"+
+"อยู่ด้วยกันแบบนี้ไปนาน ๆ นะ\n"+
+"รักเธอที่สุดเลย 💖";
+
+fanName.innerText = นีม;
+fanLock.innerText = นีม;
+
+let index = 0;
+let typing = false;
+
+/* เข้าเว็บ */
+function enter(){
+    if(password.value === PASSWORD){
+        lock.style.display="none";
+        content.style.display="block";
+        music.play();
+    }else{
+        error.innerText="รหัสไม่ถูกต้อง 😢";
+    }
+}
+
+/* พิมพ์ข้อความทีละตัว */
+function startTyping(){
+    if(typing) return;
+    typing = true;
+    box.innerHTML = "";
+    index = 0;
+    typeChar();
+}
+
+function typeChar(){
+    if(index < message.length){
+        box.innerHTML += message[index];
+        if(message[index] !== "\n") heart();
+        index++;
+        setTimeout(typeChar,60);
+    }else{
+        typing = false;
+    }
+}
+
+/* เอฟเฟกหัวใจ */
+function heart(){
+    const h = document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left = Math.random()*100+"%";
+    h.style.top = "100%";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2000);
+}
+</script>
+
+</body>
+</html>
