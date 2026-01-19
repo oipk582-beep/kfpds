@@ -116,8 +116,13 @@ button{
 </div>
 
 </div>
-
 <script>
+/* ดึง element จาก HTML */
+const fanName = document.getElementById("fanName");
+const fanLock = document.getElementById("fanLock");
+const box = document.getElementById("box");
+
+
 /* 🔧 ตั้งค่า */
 const FAN_NAME = "นีม";
 const PASSWORD = "123456";
@@ -129,8 +134,8 @@ const message =
 "อยู่ด้วยกันแบบนี้ไปนาน ๆ นะ\n"+
 "รักเธอที่สุดเลย 💖";
 
-fanName.innerText = นีม;
-fanLock.innerText = นีม;
+fanName.innerText = FAN_NAME;
+fanLock.innerText = FAN_NAME;
 
 let index = 0;
 let typing = false;
